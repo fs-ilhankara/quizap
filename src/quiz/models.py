@@ -32,9 +32,9 @@ class Update(models.Model):
 class Question(Update):
 
     SCALE = (
-        ('0', 'Beginner'),
-        ('1', 'Intermediate'),
-        ('2', 'Advanced')
+        (0, 'Beginner'),
+        (1, 'Intermediate'),
+        (2, 'Advanced')
     )
 
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
