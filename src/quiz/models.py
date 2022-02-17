@@ -9,7 +9,7 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
         
-
+    @property
     def quiz_count(self):
         return self.quiz_set.count()
 
@@ -23,6 +23,10 @@ class Quiz(models.Model):
 
     class Meta:
         verbose_name_plural = 'Quizzes'
+
+    @property
+    def question_count(self):
+        return self.question_set.count()
 
 # modellerin içinde aynı şeyleri tekrar tekrar yazmamamk için abstract true bu şekilde kullanıyoruz.
 #bu class database kaydedilmiyor.
@@ -51,7 +55,7 @@ class Question(Update):
 
 
 class Answer(Update):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answer')
     answer_text = models.CharField(max_length=250)
     is_right = models.BooleanField(default=False)
     #updated = models.DateTimeField(auto_now=True)
