@@ -5,7 +5,7 @@ from django.contrib.auth.password_validation import validate_password
 
 
 
-class RegisterSerializer(serializers.ModelSerializer):
+class RegisterationSerializer(serializers.ModelSerializer):
     #email, password custom ediyoruz burada.
     email = serializers.EmailField(required=True, validators=[UniqueValidator(queryset=User.objects.all())])
 
@@ -29,3 +29,14 @@ class RegisterSerializer(serializers.ModelSerializer):
                 {"password": "Password didn't match"}
             )
         return attrs
+
+    def create(self, validated_data):
+        user = User.objects.create(
+            username=validated_data["username"],
+            email=validated_data["email"]
+        )
+
+        user.set_password(validated_data["password"])
+        user.save()
+
+        return user
