@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'quiz.apps.QuizConfig',
+    'users.apps.UsersConfig',
     'nested_admin',
 ]
 
@@ -103,6 +104,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+#     'PAGE_SIZE': 1
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/

@@ -3,7 +3,7 @@ from django.shortcuts import render
 from rest_framework import generics
 from .models import Category, Question, Quiz 
 from .serializers import CategoryDetailSerializer, CategorySerializer, QuestionSerializer
-# from .pagination import MyPagination
+from .pagination import MyPagination
 #from rest_framework.permissions import IsAuthenticated, AllowAny
 #from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 
@@ -29,8 +29,8 @@ class CategoryDetail(generics.ListAPIView):
 class QuizDetail(generics.ListAPIView):
     serializer_class = QuestionSerializer
     #permission_classes = [IsAuthenticated]
-    # pagination_class = MyPagination
-    # pagination_class = [Pa]
+    pagination_class = MyPagination
+    
 
     def get_queryset(self):
         queryset = Question.objects.all()
